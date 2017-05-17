@@ -22,7 +22,6 @@ DEP_OBJECTS := $(patsubst $(YAJL_DIR)/%.c,$(DEP_OBJECTS_DIR)/%.o,$(DEP_SOURCES))
 SRC_OBJECTS := $(patsubst $(SRC_DIR)/%.cpp,$(OBJECTS_DIR)/%.o,$(SRC_SOURCES))
 
 all: $(DEP_OBJECTS) $(SRC_OBJECTS)
-	mkdir -p $(OBJECTS_DIR)
 	$(CPPC) -o bin/jbcc-dump $(DEP_OBJECTS) $(SRC_OBJECTS)
 
 $(DEP_OBJECTS): $(DEP_OBJECTS_DIR)/%.o:$(YAJL_DIR)/%.c
@@ -30,6 +29,7 @@ $(DEP_OBJECTS): $(DEP_OBJECTS_DIR)/%.o:$(YAJL_DIR)/%.c
 	$(CC) -c -o $@ $< -I$(YAJL_API_DIR) $(CFLAGS)
 
 $(SRC_OBJECTS): $(OBJECTS_DIR)/%.o:$(SRC_DIR)/%.cpp
+	mkdir -p $(OBJECTS_DIR)
 	$(CPPC) -c -o $@ $< -I$(ARGPARSE_DIR) -I$(YAJL_API_DIR) $(CFLAGS) $(CPPFLAGS)
 
 clean:
