@@ -19,7 +19,7 @@ int main(int argc, const char **argv)
 
 	std::string input_uri(parser.retrieve<std::string>("input"));
 
-	auto fin = std::ifstream(input_uri, std::ios::binary);
+	std::ifstream fin(input_uri, std::ios::binary);
 
 	std::vector<char> buffer(
 		(std::istreambuf_iterator<char>(fin)),
@@ -32,7 +32,7 @@ int main(int argc, const char **argv)
 
 	std::string output_uri = parser.retrieve<std::string>("output");
 	if (output_uri != "") {
-		auto fout = std::ofstream(output_uri);
+		std::ofstream fout(output_uri);
 		fout << jbcc::Reformatter().reformat(jsonText) << std::endl;
 		fout.close();
 	}
