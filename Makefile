@@ -1,5 +1,5 @@
 CC := gcc
-CPPC := g++
+CPP := g++
 
 CFLAGS := -O3 -Wall
 CPPFLAGS := -std=c++11
@@ -16,13 +16,13 @@ OBJECTS_DIR := $(BINARIES_DIR)/obj
 DEP_OBJECTS_DIR := $(OBJECTS_DIR)/dep
 
 DEP_SOURCES := $(wildcard $(YAJL_DIR)/*.c)
-SRC_SOURCES:= $(wildcard $(SRC_DIR)/*.cpp)
+SRC_SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
 
 DEP_OBJECTS := $(patsubst $(YAJL_DIR)/%.c,$(DEP_OBJECTS_DIR)/%.o,$(DEP_SOURCES))
 SRC_OBJECTS := $(patsubst $(SRC_DIR)/%.cpp,$(OBJECTS_DIR)/%.o,$(SRC_SOURCES))
 
 all: $(DEP_OBJECTS) $(SRC_OBJECTS)
-	$(CPPC) -o bin/jbcc-dump $(DEP_OBJECTS) $(SRC_OBJECTS)
+	$(CPP) -o bin/jbcc-dump $(DEP_OBJECTS) $(SRC_OBJECTS)
 
 $(DEP_OBJECTS): $(DEP_OBJECTS_DIR)/%.o:$(YAJL_DIR)/%.c
 	mkdir -p $(DEP_OBJECTS_DIR)
@@ -30,7 +30,7 @@ $(DEP_OBJECTS): $(DEP_OBJECTS_DIR)/%.o:$(YAJL_DIR)/%.c
 
 $(SRC_OBJECTS): $(OBJECTS_DIR)/%.o:$(SRC_DIR)/%.cpp
 	mkdir -p $(OBJECTS_DIR)
-	$(CPPC) -c -o $@ $< -I$(ARGPARSE_DIR) -I$(YAJL_API_DIR) $(CFLAGS) $(CPPFLAGS)
+	$(CPP) -c -o $@ $< -I$(ARGPARSE_DIR) -I$(YAJL_API_DIR) $(CFLAGS) $(CPPFLAGS)
 
 clean:
 	rm -r $(BINARIES_DIR)
