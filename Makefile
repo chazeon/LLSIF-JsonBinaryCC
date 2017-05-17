@@ -1,8 +1,8 @@
+CC := gcc
+CPPC := g++
+
 CFLAGS := -O3 -Wall
 CPPFLAGS := -std=c++11
-
-CC := clang
-CPPC := clang++
 
 DEP_DIR := dep
 SRC_DIR := src

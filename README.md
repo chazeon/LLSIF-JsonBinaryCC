@@ -16,7 +16,13 @@ $ jbcc-dump example.json
 
 ## How to Compile?
 
-I wrote and compile this program using Microsoft Visual Studio 2015. Since this program taking advantage of no more than some STL facilities, it should compile and run with no problem on any other platform.
+I wrote and compile this program using Microsoft Visual Studio 2015, and have successfully compiled using GCC and CLANG on Ubuntu. Since this program taking advantage of no more than some STL facilities, it should compile and run with no problem on any other platform.
+
+If you are running on a Linux or other Unix like system, or you have the GCC or CLANG and make toolchain installed, simply try:
+```bash
+$ make
+```
+And you can locate the compiled binary in `bin/` folder.
 
 ## KLab's YAJL
 
